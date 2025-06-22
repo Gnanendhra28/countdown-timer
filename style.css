@@ -2,39 +2,123 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #9a9b9d;
   text-align: center;
-  padding: 40px;
+  padding: 20px; /* Reduced padding for smaller screens */
+  margin: 0; /* Remove default body margin */
+  display: flex; /* Use flexbox to center content vertically and horizontally */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
 .container {
   background-color: rgb(199, 242, 252);
-  padding: 30px;
+  padding: 20px; /* Adjusted padding for better mobile fit */
   max-width: 500px;
+  width: 90%; /* Make container take up a percentage of the width */
   margin: auto;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
 h1 {
   margin-bottom: 20px;
   color: #000000;
+  font-size: 1.8em; /* Adjust heading size for mobile */
 }
 
 input, button {
-  margin: 10px;
+  margin: 10px 0; /* Adjust margin for vertical stacking */
   padding: 10px;
   font-size: 16px;
+  width: calc(100% - 20px); /* Make input and button full width minus padding */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+button {
+  cursor: pointer;
+  background-color: #007bff; /* Example button styling */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 #countdown {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
   justify-content: space-around;
-  font-size: 24px;
+  font-size: 20px; /* Slightly reduced font size for mobile */
   color: #000000;
+  gap: 10px; /* Add gap between countdown elements */
+}
+
+#countdown > div {
+  flex: 1 1 45%; /* Allows two items per row on smaller screens */
+  min-width: 80px; /* Ensure a minimum width for each item */
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent background for readability */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#countdown span {
+  display: block; /* Make the number display on its own line */
+  font-size: 1.5em; /* Larger font for the numbers */
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 #message {
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 18px; /* Adjusted font size for mobile */
   color: red;
+}
+
+/* Media Queries for finer control on different screen sizes */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  #countdown {
+    font-size: 18px;
+  }
+
+  #countdown > div {
+    flex: 1 1 100%; /* Stack items vertically on very small screens */
+  }
+
+  #countdown span {
+    font-size: 1.3em;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Adjustments for larger screens if needed, overriding mobile styles */
+  .container {
+    padding: 30px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  input, button {
+    width: auto; /* Revert to auto width for desktop */
+  }
+  #countdown {
+    font-size: 24px;
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+  }
+  #countdown > div {
+    flex: 1; /* Distribute space equally */
+  }
+  #countdown span {
+    font-size: 2.5em;
+  }
 }
